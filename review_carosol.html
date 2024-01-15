@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .body,
+        html {
+            text-align: center;
+            font-family: sans-serif;
+            background-color: rgb(245, 245, 237);
+        }
+
+        #carousel-container {
+            width: 300px;
+            border-radius: 28px;
+            overflow: hidden;
+            margin: 20px auto;
+            border-color: black;
+            background-color: rgb(166, 228, 228);
+        }
+
+        #reviews {
+            display: flex;
+            text-transform: capitalize;
+            transition: transform 0.5s ease-in-out;                                    
+        }
+
+        .card {
+            min-width: 300px;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        button {
+            width: 200px;
+            padding: 15px 0;
+            text-align: center;
+            margin: 20px 10px;
+            border-radius: 25px;
+            font-weight: bold;
+            border: 2px solid #009688;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            /* text-align: center; */
+        }
+
+        span {
+            background: #009688;
+            height: 100%;
+            width: 0;
+            border-radius: 25px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+            transition: 0.5s;
+        }
+
+        button:hover span {
+            width: 100%;
+        }
+
+        button:hover {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="carousel-container">
+        <div id="reviews">
+            <div class="card">Product is good.</div>
+            <div class="card">This is the best movie ever.Fun full movie.</div>
+            <div class="card">It’s a realistic movie, can be seen with your whole family!!</div>
+        </div>
+    </div>
+    <script>
+        const reviewsContainer = document.getElementById('reviews');
+        let currentIndex = 0;
+        function showNextReview() {
+            currentIndex = (currentIndex + 1) % reviewsContainer.children.length;
+            updateCarousel();
+        }
+        function showPrevReview() {
+            currentIndex = (currentIndex - 1 + reviewsContainer.children.length) %
+                reviewsContainer.children.length;
+            updateCarousel();
+        }
+        function updateCarousel() {
+            const translateValue = -currentIndex * 310; // 300px for review card and 10 px for margine top
+            reviewsContainer.style.transform = `translateX(${translateValue}px)`;
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('next-btn').addEventListener('click', showNextReview);
+            document.getElementById('prev-btn').addEventListener('click', showPrevReview);
+        });
+    </script>
+    <button id="prev-btn"><span></span>previous</button>
+    <button id="next-btn"><span></span>Next</button>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 25px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Color Flipper</h1>
+    <button id="ColorButton">Change color</button>
+    <Script>
+        const colors = ["red",
+            "blue",
+            "green",
+            "yellow",
+            "purple",
+            "orange",
+            "pink",
+            "brown",
+            "gray",]
+        const colorButton = document.getElementById("ColorButton");
+        function getRandomColor() {
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            return colors[randomIndex];
+        }
+        function changeBackgroundColor() {
+            const randomColor = getRandomColor();
+            document.body.style.backgroundColor = randomColor;
+        }
+        colorButton.addEventListener("click", changeBackgroundColor);
+    </Script>
+</body>
+
+</html>
